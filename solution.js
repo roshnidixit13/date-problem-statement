@@ -1,4 +1,6 @@
-function get_next_available_day(day, day_visited){
+function get_next_available_day(day, day_visited){       
+  // if days are missing this function will be used 
+  // to find the next day which available day 
   while (day < 7){
     if (day_visited.has(day)){
       return day
@@ -21,8 +23,9 @@ function solution(D){
   }
 
   day_values = {}
+  // keep track of the visited days 
   day_visited = new Set()
-
+   
   for (var date in D){
     day = new Date(date).getDay()
     if (day_values[day]){
@@ -32,7 +35,9 @@ function solution(D){
     }
     day_visited.add(day)
   }
-
+    
+   // if the input doesnot have all seven days then day visited day_visited.size will be less than seven
+  // in that case calculate the mean of previous day and next available day 
   if (day_visited.size < 7){
     for (var day = 0; day <= 6; day++){
       if (!day_visited.has(day)){
